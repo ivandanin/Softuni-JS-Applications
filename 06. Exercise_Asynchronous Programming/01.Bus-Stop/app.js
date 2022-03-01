@@ -2,7 +2,6 @@ function getInfo() {
     let inputElement = document.getElementById('stopId');
     let stopElement = document.getElementById('stopName');
     let busElement = document.getElementById('buses');
-    let submitBtn = document.getElementById('submit');
 
     let url = `http://localhost:3030/jsonstore/bus/businfo/${inputElement.value}`;
 
