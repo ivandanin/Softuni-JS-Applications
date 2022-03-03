@@ -1,4 +1,4 @@
-let baseUrl = 'http://localhost:3030';
+let baseUrl = 'http://localhost:3030/jsonstore/cookbook';
 
 window.addEventListener('load', () => {
     getRecipes();
@@ -18,7 +18,7 @@ function createRecipe(recipe) {
     recipeArticleElement.classList.add('preview');
 
     recipeArticleElement.addEventListener('click', () => {
-        fetch(`${baseUrl}/jsonstore/cookbook/details/${recipe._id}`)
+        fetch(`${baseUrl}/details/${recipe._id}`)
             .then(response => response.json())
             .then(details => {
                 let mainElement = document.querySelector('main');
@@ -39,7 +39,7 @@ function createRecipe(recipe) {
 }
 
 function getRecipes() {
-    fetch(`${baseUrl}/jsonstore/cookbook/recipes`)
+    fetch(`${baseUrl}/recipes`)
     .then(response => response.json())
     .then(data => {
         renderRecipes(Object.values(data));
