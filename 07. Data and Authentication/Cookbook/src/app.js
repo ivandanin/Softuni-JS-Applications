@@ -8,9 +8,9 @@ window.addEventListener('load', () => {
     logoutBtn.addEventListener('click', logout);
 
     if (!localStorage.getItem('accessToken')) {
-        guest.style.display = 'block';
+        guest.style.display = 'inline-block';
     } else {
-        user.style.display = 'block';
+        user.style.display = 'inline-block';
     }
 
     getRecipes();
