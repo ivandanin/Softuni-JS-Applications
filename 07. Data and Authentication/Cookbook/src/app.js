@@ -3,8 +3,15 @@ let baseUrl = 'http://localhost:3030/jsonstore/cookbook';
 window.addEventListener('load', () => {
     let guest = document.querySelector('#guest');
     let user = document.querySelector('#user');
+    let logoutBtn = document.getElementById('logoutBtn');
 
-    guest.style.display = 'block';
+    logoutBtn.addEventListener('click', logout);
+
+    if (!localStorage.getItem('accessToken')) {
+        guest.style.display = 'block';
+    } else {
+        user.style.display = 'block';
+    }
 
     getRecipes();
 });
@@ -75,4 +82,8 @@ function renderDetailedRecipe(details) {
     </article>`;
 
     return recipeArticleElement;
+}
+
+function logout() {
+    localStorage.clear();
 }
