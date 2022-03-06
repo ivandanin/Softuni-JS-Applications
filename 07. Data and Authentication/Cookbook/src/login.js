@@ -20,5 +20,7 @@
             localStorage.setItem('_id', user._id);
             localStorage.setItem('username', user.username);
             localStorage.setItem('accessToken', user.accessToken);
+            location.href = 'index.html';
+
         });
     });

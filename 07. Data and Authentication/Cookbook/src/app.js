@@ -1,4 +1,4 @@
-let baseUrl = 'http://localhost:3030/jsonstore/cookbook';
+let baseUrl = 'http://localhost:3030';
 
 window.addEventListener('load', () => {
     let guest = document.querySelector('#guest');
@@ -30,7 +30,7 @@ function createRecipe(recipe) {
     recipeArticleElement.classList.add('preview');
 
     recipeArticleElement.addEventListener('click', () => {
-        fetch(`${baseUrl}/details/${recipe._id}`)
+        fetch(`${baseUrl}/jsonstore/cookbook/details/${recipe._id}`)
             .then(response => response.json())
             .then(details => {
                 let mainElement = document.querySelector('main');
@@ -51,10 +51,18 @@ function createRecipe(recipe) {
 }
 
 function getRecipes() {
-    fetch(`${baseUrl}/recipes`)
+    fetch(`${baseUrl}/data/recipes`)
     .then(response => response.json())
-    .then(data => {
-        renderRecipes(Object.values(data));
+    .then(recipes => {
+        renderRecipes(Object.values(recipes));
+    });
+}
+
+function getRecipesById(id) {
+    fetch(`${baseUrl}/data/recipes` + id)
+    .then(response => response.json())
+    .then(recipes => {
+        renderRecipes(recipes);
     });
 }
 
@@ -84,6 +92,8 @@ function renderDetailedRecipe(details) {
     return recipeArticleElement;
 }
 
-function logout() {
+function logout(event) {
+    event.preventDefault();
     localStorage.clear();
+    location.href = 'index.html';
 }
