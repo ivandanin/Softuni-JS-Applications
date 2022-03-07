@@ -58,7 +58,7 @@ function attachEvents() {
                 conditionSpanElement.appendChild(locationSpanElement);
                 
                 let degreesSpanElement = document.createElement('span');
-                degreesSpanElement.innerHTML = `${forecast.low}${`&#176;`}/${forecast.high}${`&#176;`}`;
+                degreesSpanElement.innerHTML = `${forecast.low}${'&#176;'}/${forecast.high}${'&#176;'}`;
                 degreesSpanElement.classList.add('forecast-data');
                 
                 let locationConditionElement = document.createElement('span');
@@ -79,8 +79,8 @@ function attachEvents() {
                         divElement.classList.add('forecast-info');
  
                         for (let i = 0; i < 3; i++) {
-                            let firstElement = document.createElement('span');
-                            firstElement.classList.add('upcoming');
+                            let forecastInfoDivElement = document.createElement('span');
+                            forecastInfoDivElement.classList.add('upcoming');
 
                             let iconSpanElement = document.createElement('span');
  
@@ -99,21 +99,21 @@ function attachEvents() {
                                     break;
                             }
                             iconSpanElement.classList.add('symbol');
-                            firstElement.appendChild(iconSpanElement);
+                            forecastInfoDivElement.appendChild(iconSpanElement);
  
                             let degreesSpanElement = document.createElement('span');
                             degreesSpanElement.classList.add('forecast-data');
                             degreesSpanElement.innerHTML = `${forecast[i].low}${'&#176;'}/${forecast[i].high}${'&#176;'}`;
  
-                            firstElement.appendChild(degreesSpanElement);
+                            forecastInfoDivElement.appendChild(degreesSpanElement);
  
                             let locationConditionElement = document.createElement('span');
                             locationConditionElement.classList.add('forecast-data');
                             locationConditionElement.textContent = forecast[i].condition;
  
-                            firstElement.appendChild(locationConditionElement);
+                            forecastInfoDivElement.appendChild(locationConditionElement);
  
-                            divElement.appendChild(firstElement);
+                            divElement.appendChild(forecastInfoDivElement);
                         }
                         upcomingDivElement.appendChild(divElement);
                     });
