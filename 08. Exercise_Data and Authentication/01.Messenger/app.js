@@ -29,7 +29,6 @@ async function loadMessages() {
     })
     .then(data => {
         messages.value = Object.values(data).map(({author, content}) => `${author}: ${content}`).join('\n');
-        console.log(Object.values(data));
     });
 }
 
