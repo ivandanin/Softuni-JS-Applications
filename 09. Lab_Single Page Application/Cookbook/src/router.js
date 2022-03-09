@@ -1,14 +1,16 @@
-import { renderHome } from './home.js';
-import { renderLogin } from './login.js';
-import { renderRegister } from './register.js';
-import { renderError } from './error.js';
-import { renderCreate } from './create.js'; 
+import { renderHome } from './pages/home.js';
+import { renderLogin } from './pages/login.js';
+import { renderLogout } from './auth.js';
+import { renderRegister } from './pages/register.js';
+import { renderError } from './pages/error.js';
+import { renderCreate } from './pages/create.js'; 
 
 let routes = {
     '/': renderHome,
     '/login': renderLogin,
     '/register': renderRegister,
-    '/create': renderCreate
+    '/create': renderCreate,
+    '/logout': renderLogout
 }
 
 export function router(path) {
