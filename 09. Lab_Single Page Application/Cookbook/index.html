@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="static/site.css">
     <link rel="stylesheet" href="static/recipe.css">
     <link rel="stylesheet" href="static/form.css">
-    <script type="module" src="./src/app.js"></script>
+    <script src="./src/app.js" type="module"></script>
 </head>
 
 <body>
     <header>
         <h1>My Cookbook</h1>
-        <nav>
+        <nav class="navigation">
             <a href="/" class="active">Catalog</a>
             <div id="user">
                 <a href="/create">Create Recipe</a>
@@ -63,6 +63,9 @@
                 <label>Password: <input type="password" name="password"></label>
                 <input type="submit" value="Login">
             </form>
+        </section>
+        <section class="notFound">
+            <h2>Page not found</h2>
         </section>
     </main>
 </body>
