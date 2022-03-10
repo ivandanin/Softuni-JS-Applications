@@ -9,9 +9,6 @@ let url = 'http://localhost:3030/jsonstore/collections/myboard/posts';
 let mainElement = document.querySelector('main');
 let topicContainerElement = document.querySelector('.topic-container');
 
-let postBtn = document.querySelector('.post');
-postBtn.addEventListener('click', postTopic);
-
 export function postTopic(event) {
     event.preventDefault();
     
@@ -38,10 +35,6 @@ export function postTopic(event) {
     })
     .catch(error => alert(error.message));
 }
-
-
-let cancelBtn = document.querySelector('.cancel');
-
 
 function displayTopics() {
     topicContainerElement.replaceChildren();
