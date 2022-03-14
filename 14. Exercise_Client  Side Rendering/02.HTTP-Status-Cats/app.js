@@ -22,7 +22,7 @@ let cardTemplate = (data) => html`
 </ul>
 `;
 
-cats.forEach(c => console.log(c));
+cats.forEach(c => c.info = false);
 update();
 
 function update() {
