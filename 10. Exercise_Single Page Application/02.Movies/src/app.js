@@ -2,6 +2,7 @@ import { showHomePage } from "./home.js";
 import { loginPage } from "./login.js";
 import { registerPage } from "./register.js";
 import { createPage } from "./create.js";
+import { updateNav } from "./util.js";
 // import { detailsPage } from "./details.js";
 // import {editPage} from "./edit.js";
 const routes = {
@@ -19,6 +20,7 @@ function onNav(event){
     if (event.target.tagName == 'A' &&
     event.target.href) {
         event.preventDefault();
+        
         let url = new URL(event.target.href);
         let view = routes[url.pathname];
 
@@ -29,8 +31,10 @@ function onNav(event){
 }
 
 function logoutPage(){
+    localStorage.removeItem('user');
+    updateNav();
     alert('bye');
 }
 
-
+updateNav();
 showHomePage();

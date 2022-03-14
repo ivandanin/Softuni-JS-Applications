@@ -11,34 +11,27 @@ export function createPage(){
 
 async function onSubmit(event) {
     event.preventDefault();
-
+    
     let formData = new FormData(form);
-    let email = formData.get('email');
-    let password = formData.get('password');
 
-    await login(email, password);
+    let title = formData.get('title');
+    let description = formData.get('description');
+    let img = formData.get('imageUrl');
+
+    await createMovie(title, description, img);
+    form.reset();
     showHomePage();
 }
 
-async function login(email, password) {
-    try {
-        let response = await fetch('http://localhost:3030/users/login', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            }, 
-            body: JSON.stringify({email, password})
-        });
-        if (!response.ok) {
-            let error = await response.json();
-            throw new Error(error.message);
-        }
+async function createMovie(title, description, img) {
+    let user = JSON.parse(localStorage.getItem('user'));
 
-        let user = await response.json();
-        localStorage.setItem('user', JSON.stringify(user));
-
-    } catch (error) {
-        alert(error.message);
-        throw error;
-    }
+    await fetch('http://localhost:3030/data/movies', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'X-Authorization': user.accessToken
+        }, 
+        body: JSON.stringify({title, description, img})
+    });
 }

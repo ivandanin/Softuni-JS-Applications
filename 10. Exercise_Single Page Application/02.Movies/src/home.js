@@ -1,7 +1,16 @@
+import { detailsPage } from './details.js';
 import {showView, spinner} from './util.js';
 
 let homeSection = document.querySelector('#home-page');
 let catalog = document.querySelector('#movie .card-deck.d-flex.justify-content-center');
+catalog.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    if (event.target.tagName == 'BUTTON') {
+        let id = event.target.dataset.id;
+        detailsPage(id);
+    }
+});
 
 export function showHomePage(){
     showView(homeSection);
@@ -24,8 +33,8 @@ function createMoviePreview(movie) {
        <h4 class="card-title">${movie.title}</h4>
     </div>
     <div class="card-footer">
-       <a data-id="${movie._id}" href="/details/${movie._id}">
-           <button type="button" class="btn btn-info">Details</button>
+       <a href="/details/${movie._id}">
+           <button data-id="${movie._id}" type="button" class="btn btn-info">Details</button>
        </a>
     </div>`;
 
