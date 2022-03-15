@@ -1,4 +1,5 @@
 import {getToken} from '../auth.js'
+import { showDetails } from './details.js';
 
 let createSection = document.querySelector('.create');
 let createForm = createSection.querySelector('form');
@@ -30,8 +31,15 @@ createForm.addEventListener('submit', (event) => {
         }, 
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (response.status == 200) {
+            showDetails(response.json()._id);
+        }
+    })
     .then(data => {
+        if (response.status == 200) {
+            showDetails()
+        }
         alert('You have created a new recipe!')
     })
 });
