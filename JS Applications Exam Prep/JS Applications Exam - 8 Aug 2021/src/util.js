@@ -4,6 +4,6 @@ export function setUserData(data) {
 export function getUserData() {
     return sessionStorage.getItem('userData');
 }
-export function clearUserData(data) {
+export function clearUserData() {
     sessionStorage.removeItem('userData');
 }
