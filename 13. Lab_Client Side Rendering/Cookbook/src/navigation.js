@@ -34,8 +34,8 @@ export function createNav(main, navbar) {
         render(result, main);
     }
 
-    function registerView(name, section, setup, navId) {
-        const execute = setup(section, navigator);
+    function registerView(name, setup, navId) {
+        const execute = setup(navigator);
 
         views[name] = (...params) => {
             [...navbar.querySelectorAll('a')].forEach(a => a.classList.remove('active'));

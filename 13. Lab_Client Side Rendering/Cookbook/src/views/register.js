@@ -1,19 +1,25 @@
 import { regster } from '../api/data.js';
+import { html } from '../dom.js';
 
+const registerTemplate = () => html`
+<section id="register">
+    <article>
+        <h2>Register</h2>
+        <form>
+            <label>E-mail: <input type="text" name="email"></label>
+            <label>Password: <input type="password" name="password"></label>
+            <label>Repeat: <input type="password" name="rePass"></label>
+            <input type="submit" value="Register">
+        </form>
+    </article>
+</section>`;
 
-export function setupRegister(section, nav) {
-    const form = section.querySelector('form');
-
-    form.addEventListener('submit', (ev => {
-        ev.preventDefault();
-        const formData = new FormData(ev.target);
-        onSubmit([...formData.entries()].reduce((p, [k, v]) => Object.assign(p, { [k]: v }), {}));
-    }));
-
+export function setupRegister(nav) {
+    nav.registerForm('registerForm', onSubmit);
     return showRegister;
 
     function showRegister() {
-        return section;
+        return registerTemplate();
     }
 
     async function onSubmit(data) {

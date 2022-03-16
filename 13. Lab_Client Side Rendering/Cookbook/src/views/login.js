@@ -1,19 +1,24 @@
 import { login } from '../api/data.js';
+import { html } from '../dom.js';
 
+const loginTemplate = () => html`
+<section id="login">
+    <article>
+        <h2>Login</h2>
+        <form>
+            <label>E-mail: <input type="text" name="email"></label>
+            <label>Password: <input type="password" name="password"></label>
+            <input type="submit" value="Login">
+        </form>
+    </article>
+</section>`;
 
-export function setupLogin(section, nav) {
-    const form = section.querySelector('form');
-
-    form.addEventListener('submit', (ev => {
-        ev.preventDefault();
-        const formData = new FormData(ev.target);
-        onSubmit([...formData.entries()].reduce((p, [k, v]) => Object.assign(p, { [k]: v }), {}));
-    }));
-
+export function setupLogin(nav) {
+    nav.registerForm('loginForm', onSubmit);
     return showLogin;
 
     function showLogin() {
-        return section;
+        return loginTemplate();
     }
 
     async function onSubmit(data) {
