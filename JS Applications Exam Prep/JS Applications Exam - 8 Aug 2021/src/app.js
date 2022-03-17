@@ -12,6 +12,9 @@ page('/', homePage);
 page('/login', loginPage);
 page('/register', registerPage);
 
+updateUserNav();
+page.start();
+
 document.getElementById('logoutBtn').addEventListener('click', onLogout);
 
 function onLogout() {
@@ -37,6 +40,3 @@ function decoratorContext(context, next) {
     context.updateUserNav = updateUserNav;
     next();
 }
-
-updateUserNav();
-page.start();
