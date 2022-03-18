@@ -2,15 +2,15 @@ import { page, render } from './lib.js';
 import { homePage } from './views/home.js';
 import { catalogPage } from './views/catalog.js';
 import {loginPage} from './views/login.js';
-import { registerPage } from './views/register.js';
-
-// used for debug
-import * as api from './api/data.js';
 import { logout } from './api/api.js';
 import { getUserData } from './util.js';
+import { registerPage } from './views/register.js';
 import { createPage } from './views/create.js';
 import { detailsPage } from './views/details.js';
 import { editPage } from './views/edit.js';
+
+// used for debug
+import * as api from './api/data.js';
 window.api = api;
 
 const root = document.querySelector('main');

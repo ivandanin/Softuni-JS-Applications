@@ -20,3 +20,6 @@ export async function deleteById(id) {
     return api.del('/data/memes/' + id);
 }
 
+export async function editMeme(id, meme) {
+    return api.put('/data/memes/' + id, meme);
+}
