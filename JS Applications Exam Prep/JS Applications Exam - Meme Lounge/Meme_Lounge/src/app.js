@@ -8,6 +8,7 @@ import { registerPage } from './views/register.js';
 import { createPage } from './views/create.js';
 import { detailsPage } from './views/details.js';
 import { editPage } from './views/edit.js';
+import { profilePage } from './views/profile.js';
 
 // used for debug
 import * as api from './api/data.js';
@@ -24,6 +25,7 @@ page('/register', registerPage);
 page('/create', createPage);
 page('/details/:id', detailsPage)
 page('/edit/:id', editPage);
+page('/profile', profilePage)
 
 updateUserNav();
 page.start();
@@ -37,6 +39,7 @@ function decorateContext(context, next) {
 function onLogout() {
     logout();
     updateUserNav();
+    page.redirect('/');
 }
 
 function updateUserNav() {
