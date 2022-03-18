@@ -8,6 +8,9 @@ import { registerPage } from './views/register.js';
 import * as api from './api/data.js';
 import { logout } from './api/api.js';
 import { getUserData } from './util.js';
+import { createPage } from './views/create.js';
+import { detailsPage } from './views/details.js';
+import { editPage } from './views/edit.js';
 window.api = api;
 
 const root = document.querySelector('main');
@@ -18,6 +21,9 @@ page('/', homePage);
 page('/memes', catalogPage);
 page('/login', loginPage);
 page('/register', registerPage);
+page('/create', createPage);
+page('/details/:id', detailsPage)
+page('/edit/:id', editPage);
 
 updateUserNav();
 page.start();
