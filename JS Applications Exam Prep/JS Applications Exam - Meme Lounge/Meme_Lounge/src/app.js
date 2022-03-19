@@ -10,10 +10,6 @@ import { detailsPage } from './views/details.js';
 import { editPage } from './views/edit.js';
 import { profilePage } from './views/profile.js';
 
-// used for debug
-import * as api from './api/data.js';
-window.api = api;
-
 const root = document.querySelector('main');
 document.getElementById('logoutBtn').addEventListener('click', onLogout);
 

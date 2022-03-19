@@ -1,5 +1,6 @@
 import { login } from "../api/api.js";
 import { html } from "../lib.js";
+import { notify } from "../notify.js";
 
 const loginTemplate = (onSubmit) => html`
 <section id="login">
@@ -29,6 +30,11 @@ export function loginPage(context) {
 
         const email = formData.get('email');
         const password = formData.get('password');
+
+        if(email == '' || password == '') {
+            // return alert('fill both fields!');
+            return notify('fill both fields!');
+        }
 
         await login(email, password);
         context.updateUserNav();
