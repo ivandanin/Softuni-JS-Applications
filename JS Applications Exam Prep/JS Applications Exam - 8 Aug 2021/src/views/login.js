@@ -1,6 +1,5 @@
 import { login } from "../api/api.js";
 import { html } from "../lib.js";
-import {updateUserNav} from '../app.js';
 
 const loginTemplate = (onSubmit) => html`
 <section id="login-page" class="login">
@@ -24,18 +23,21 @@ const loginTemplate = (onSubmit) => html`
     </form>
 </section>`;
 
+
 export function loginPage(context) {
     context.render(loginTemplate(onSubmit));
 
+    
     async function onSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
 
-        const email = formData.get('email').trim();
-        const password = formData.get('password').trim();
+        const email = formData.get('email');
+        const password = formData.get('password');
 
-        if (email == '' || password == '') {
-            return alert('please fill both fields!')
+        if(email == '' || password == '') {
+            return alert('fill both fields!');
+            // return notify('fill both fields!');
         }
 
         await login(email, password);

@@ -1,6 +1,5 @@
 import { register } from "../api/api.js";
 import { html } from "../lib.js";
-import {updateUserNav} from '../app.js';
 
 const registerTemplate = (onSubmit) => html`
 <section id="register-page" class="register">
@@ -30,22 +29,26 @@ const registerTemplate = (onSubmit) => html`
     </form>
 </section>`;
 
+
 export function registerPage(context) {
     context.render(registerTemplate(onSubmit));
 
+    
     async function onSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
 
-        const email = formData.get('email').trim();
-        const password = formData.get('password').trim();
-        const repass = formData.get('confirm-pass').trim();
+        const email = formData.get('email');
+        const password = formData.get('password');
+        const repeatPass = formData.get('confirm-pass');
 
-        if (email == '' || password == '' || repass == '') {
-            return alert('please fill all fields!')
+        if ( email == '' || password == '') {
+            return alert('all fields are required!');
+            // return notify('all fields are required!');
         }
-        if (password != repass) {
-            return alert('passwords does not match!');
+        if (password != repeatPass) {
+            return alert('passwords do not match')
+            // return notify('passwords do not match')
         }
 
         await register(email, password);
