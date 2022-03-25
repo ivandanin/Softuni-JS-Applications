@@ -14,8 +14,8 @@ const detailsTemplate = (book, isOwner, onDelete, likes, showLikeBtn, onLike) =>
             <a @click=${onDelete} class="button" href="javascript:void(0)">Delete</a> `
             : null
         }
-            ${likeTemplate(showLikeBtn, onLike)}
-            <div class="likes">
+        ${likeTemplate(showLikeBtn, onLike)}
+        <div class="likes">
                 <img class="hearts" src="/images/heart.png">
                 <span id="total-likes">Likes: ${likes}</span>
             </div>
@@ -29,7 +29,7 @@ const detailsTemplate = (book, isOwner, onDelete, likes, showLikeBtn, onLike) =>
 
 const likeTemplate = (showLikeBtn, onLike) =>{
     if (showLikeBtn) {
-        html`<a @click=${onLike} class="button" href="javascript:void(0)">Like</a>`
+        return html`<a @click=${onLike} class="button" href="javascript:void(0)">Like</a>`
     } else {
         return null;
     }
