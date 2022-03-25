@@ -1,4 +1,4 @@
-import { notify } from "../notify.js";
+// import { notify } from "../notify.js";
 import { getUserData, setUserData, clearUserData } from "../util.js";
 
 const hostname = 'http://localhost:3030'
@@ -18,8 +18,8 @@ async function request(url, options) {
             return response;
         }
     } catch (error) {
-        // alert(error.message);
-        notify(error.message);
+        alert(error.message);
+        // notify(error.message);
         throw error;
     }
 }
