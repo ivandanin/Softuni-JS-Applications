@@ -1,4 +1,3 @@
-import { getAll } from "../api/data.js";
 import { html } from "../lib.js";
 
 
@@ -9,13 +8,12 @@ const homeTemplate = () => html`
         <img class="hero" src="/images/car-png.webp" alt="carIntro">
         <h2>To see all the listings click the link below:</h2>
         <div>
-            <a href="#" class="button">Listings</a>
+            <a href="/all-listings" class="button">Listings</a>
         </div>
     </div>
 </section>`;
 
 export async function homePage(context) {
-    const data = await getAll();
     context.render(homeTemplate());
 
 }
