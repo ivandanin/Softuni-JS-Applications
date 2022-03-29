@@ -37,9 +37,11 @@ export async function loginPage(context) {
         if (username == '' || password == '') {
             return alert('fill all fields');
         }
+        
+        await login(username, password);
+        context.updateNav();
+        context.page.redirect('/all-listings');
     }
     
-    await login(username, password);
-    context.page.redirect('/all-listings');
 }
 

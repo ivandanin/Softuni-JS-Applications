@@ -6,7 +6,7 @@ async function request(url, options) {
     try {
         const response = await fetch(localhost + url, options);
 
-        if (!response.ok) {
+        if (response.ok == false) {
             const error = await response.json();
             throw new Error(error.message);
         } 
@@ -23,7 +23,7 @@ async function request(url, options) {
     }
 }
 
-async function createOptions(method = 'GET', data) {
+function createOptions(method = 'GET', data) {
     const options = {
         method,
         headers: {}
@@ -35,7 +35,7 @@ async function createOptions(method = 'GET', data) {
     }
 
     const userData = getUserData();
-
+   
     if(userData) {
         options.headers['X-Authorization'] = userData.token;
     }
@@ -84,6 +84,6 @@ export async function register(username, password) {
 }
 
 export async function logout() {
-    get('users/logout');
+    get('/users/logout');
     clearUserData();
 }
