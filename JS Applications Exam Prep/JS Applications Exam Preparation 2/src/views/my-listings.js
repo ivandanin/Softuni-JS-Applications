@@ -25,7 +25,7 @@ const carCard = (car) => html`
             <h3>Price: ${car.price} $</h3>
         </div>
         <div class="data-buttons">
-            <a href="/details/${car.id}" class="button-carDetails">Details</a>
+            <a href="/details/${car._id}" class="button-carDetails">Details</a>
         </div>
     </div>
 </div>`;

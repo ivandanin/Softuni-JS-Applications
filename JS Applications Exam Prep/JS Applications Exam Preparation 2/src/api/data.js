@@ -21,7 +21,7 @@ export async function create(car) {
 } 
 
 export async function deleteById(id) {
-    return api.del('/data/cars' + id);
+    return api.del('/data/cars/' + id);
 }
 
 export async function edit(id, car) {
