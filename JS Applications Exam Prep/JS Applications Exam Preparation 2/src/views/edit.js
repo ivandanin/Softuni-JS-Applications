@@ -2,7 +2,6 @@ import { edit, getById } from "../api/data.js";
 import { html } from "../lib.js";
 
 const editTemplate = (data, onSubmit) => html`
-<section id="edit-listing">
     <div class="container">
     <form @submit=${onSubmit} id="edit-form">
             <h1>Edit Car Listing</h1>
@@ -37,9 +36,9 @@ export async function editPage(context) {
         const brand = formData.get('brand');
         const model = formData.get('model');
         const description = formData.get('description');
-        const year = formData.get('year');
+        const year = Number(formData.get('year'));
         const imageUrl = formData.get('imageUrl');
-        const price = formData.get('price');
+        const price = Number(formData.get('price'));
 
         if (brand == '' ||
         model == '' ||

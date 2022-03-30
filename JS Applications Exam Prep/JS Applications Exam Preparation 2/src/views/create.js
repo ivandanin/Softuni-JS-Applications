@@ -37,9 +37,9 @@ export async function createPage(context) {
         const brand = formData.get('brand');
         const model = formData.get('model');
         const description = formData.get('description');
-        const year = formData.get('year');
+        const year = Number(formData.get('year'));
         const imageUrl = formData.get('imageUrl');
-        const price = formData.get('price');
+        const price = Number(formData.get('price'));
 
         if (brand == '' ||
         model == '' ||
@@ -54,7 +54,7 @@ export async function createPage(context) {
             return alert('price must be positive number');
         }
 
-        if (year < 0 ) {
+        if (year < 0) {
             return alert('the year is not real');
         }
 

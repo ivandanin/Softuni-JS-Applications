@@ -28,3 +28,6 @@ export async function edit(id, car) {
     return api.put('/data/cars/' + id, car);
 }
 
+export async function search(query) {
+    return api.get(`/data/cars?where=year%3D${query}`);
+}

@@ -9,6 +9,7 @@ import { logout } from './api/api.js';
 import { detailsPage } from "./views/details.js";
 import { editPage } from "./views/edit.js";
 import { createPage } from "./views/create.js";
+import { filterPage } from "./views/by-year.js";
 
 const main = document.querySelector('main');
 document.getElementById('logoutBtn').addEventListener('click', onLogout);
@@ -25,6 +26,7 @@ page('/myListings', myListingsPage);
 page('/details/:id', detailsPage);
 page('/edit/:id', editPage);
 page('/create', createPage);
+page('/by-year', filterPage);
 
 updateNav();
 page.start();
