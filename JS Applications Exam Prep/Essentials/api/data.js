@@ -39,3 +39,7 @@ export async function getLikesByItemId(bookId) {
 export async function getMyLikeByItemId(bookId, userId) {
     return api.get(`/data/likes?where=bookId%3D%22${bookId}%22%20and%20_ownerId%3D%22${userId}%22&count`);
 }
+
+export async function search(query) {
+    return api.get(`/data/cars?where=year%3D${query}`);
+}
