@@ -31,3 +31,11 @@ export async function deleteById(id) {
 export async function editItem(id, game) {
     return api.put('/data/games/' + id, game);
 }
+
+export async function getComments(gameId) {
+    return api.get(`/data/comments?where=gameId%3D%22${gameId}%22`);
+}
+
+export async function createComment(comment) {
+    return api.post('/data/comments', comment);
+}

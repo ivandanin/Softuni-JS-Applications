@@ -3,7 +3,7 @@ const { expect } = require('chai');
 
 const host = 'http://localhost:5500'; // Application host (NOT service host - that can be anything)
 const interval = 500;
-const DEBUG = false;
+const DEBUG = true;
 const slowMo = 500;
 
 const mockData = require('./mock-data.json');
@@ -533,7 +533,7 @@ describe('E2E tests', function () {
         });
     });
 
-    describe('BONUS: Comments [ 10 Points ]', async () => {
+    describe.only('BONUS: Comments [ 10 Points ]', async () => {
 
         it('Guest should not be able to see the section "Add new comment", but should be able to see the section "Comments" [ 1 Points ]', async () => {
             const data = mockData.catalog[0];
