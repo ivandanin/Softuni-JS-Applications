@@ -87,6 +87,7 @@ export async function detailsPage(context) {
         }
 
         await createComment({comment, gameId});
+        event.target.reset();
         context.page.redirect('/details/' + gameId);
     }
 }
