@@ -5,27 +5,27 @@ export const logout = api.logout;
 export const register = api.register;
 
 export async function getAllItems() {
-    return api.get('/data/memes?sortBy=_createdOn%20desc');
+    return api.get('/data/theaters?sortBy=_createdOn%20desc');
 }
 
 export async function getItemById(id) {
-    return api.get('/data/memes/' + id);
+    return api.get('/data/theaters/' + id);
 }
 
 export async function getMyItems(userId) {
-    return api.get(`/data/memes?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`);
+    return api.get(`/data/theaters?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`);
 }
 
-export async function createItem(meme) {
-    return api.post('/data/memes', meme);
+export async function createItem(data) {
+    return api.post('/data/theaters', data);
 }
 
 export async function deleteById(id) {
-    return api.del('/data/memes/' + id);
+    return api.del('/data/theaters/' + id);
 }
 
-export async function editItem(id, meme) {
-    return api.put('/data/memes/' + id, meme);
+export async function editItem(id, data) {
+    return api.put('/data/theaters/' + id, data);
 }
 
 export async function LikeItem(bookId) {
