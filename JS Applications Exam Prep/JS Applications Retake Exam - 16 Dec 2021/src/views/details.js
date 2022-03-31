@@ -1,7 +1,7 @@
-import { deleteById, getItemById, getLikesByItemId } from "../api/data.js";
+import { deleteById, getItemById, getLikesByItemId, getMyLikeByItemId, LikeItem } from "../api/data.js";
 import { html } from "../lib.js";
 import { getUserData } from "../util.js";
-const detailsTemplate = (data, isOwner, likes, onDelete) => html`
+const detailsTemplate = (data, isOwner, likes, onDelete, showLikeBtn, onLike) => html`
 <section id="detailsPage">
 <div id="detailsBox">
     <div class="detailsInfo">
@@ -23,21 +23,35 @@ const detailsTemplate = (data, isOwner, likes, onDelete) => html`
             <a class="btn-edit" href="/edit/${data._id}">Edit</a>`
             : null}
 
-
+        ${likeTemplate(showLikeBtn, onLike)}
         </div>
         <p class="likes">Likes: ${likes}</p>
     </div>
 </div>
 </section>`;
 
-const likeBtn = () => html`<a class="btn-like" href="#">Like</a>`;
+const likeTemplate = (showLikeBtn, onLike) => {
+    if (showLikeBtn) {
+        return html`<a @click=${onLike} class="btn-like" href="#">Like</a>`;
+    } else {
+        return null;
+    }
+}
 
 export async function detailsPage(context) {
-    const data = await getItemById(context.params.id);
-    const likes = await getLikesByItemId(context.params.id);
+    const userData = getUserData();
 
-    const isOwner = getUserData() && data._ownerId == getUserData().id;
-    context.render(detailsTemplate(data, isOwner, likes, onDelete));
+    const [data, likes, hasLike] = await Promise.all([
+        getItemById(context.params.id),
+        getLikesByItemId(context.params.id),
+        userData ? getMyLikeByItemId(context.params.id, userData.id) : 0
+    ]);
+
+    const isOwner = userData && data._ownerId == userData.id;
+
+    const showLikeBtn = userData != null && isOwner == false && hasLike == false;
+
+    context.render(detailsTemplate(data, isOwner, likes, onDelete, showLikeBtn, onLike));
 
     async function onDelete() {
         const choice = confirm('sure?');
@@ -45,5 +59,9 @@ export async function detailsPage(context) {
             await deleteById(context.params.id);
         }
         context.page.redirect('/profile');
+    }
+    async function onLike() {
+        await LikeItem(context.params.id);
+        context.page.redirect('/details/' + context.params.id);
     }
 }
