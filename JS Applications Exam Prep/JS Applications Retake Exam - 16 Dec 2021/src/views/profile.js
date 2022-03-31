@@ -1,27 +1,40 @@
+import { getMyItems } from "../api/data.js";
 import { html } from "../lib.js";
+import { getUserData } from "../util.js";
 
-const profileTemplate = () => html`
-section id="profilePage">
-            <div class="userInfo">
-                <div class="avatar">
-                    <img src="./images/profilePic.png">
-                </div>
-                <h2>steven@abv.bg</h2>
-            </div>
-            <div class="board">
-                <!--If there are event-->
-                <div class="eventBoard">
-                    <div class="event-info">
-                        <img src="./images/Moulin-Rouge!-The-Musical.jpg">
-                        <h2>Moulin Rouge! - The Musical</h2>
-                        <h6>July 10, 2018</h6>
-                        <a href="#" class="details-button">Details</a>
-                    </div>
-                </div>
-
-                <!--If there are no event-->
+const profileTemplate = (data, email) => html`
+<section id="profilePage">
+    <div class="userInfo">
+        <div class="avatar">
+            <img src="./images/profilePic.png">
+        </div>
+        <h2>${email}</h2>
+    </div>
+    <div class="board">
+        ${data.length == 0
+            ? html`
                 <div class="no-events">
                     <p>This user has no events yet!</p>
-                </div>
-            </div>
-        </section>`;
+                </div>`
+            : data.map(profileCard)}
+    </div>
+</section>`;
+
+const profileCard = (scene) => html`
+<div class="eventBoard">
+    <div class="event-info">
+        <img src="${scene.imageUrl}">
+        <h2>${scene.title}</h2>
+        <h6>${scene.date}</h6>
+        <a href="/details/${scene._id}" class="details-button">Details</a>
+    </div>
+</div>`;
+
+export async function profilePage(context) {
+    const userData = getUserData();
+    
+    const email = userData.email;
+    
+    const data = await getMyItems(userData.id);
+    context.render(profileTemplate(data, email));
+}

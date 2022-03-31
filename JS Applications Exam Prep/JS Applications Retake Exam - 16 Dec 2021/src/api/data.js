@@ -5,7 +5,7 @@ export const logout = api.logout;
 export const register = api.register;
 
 export async function getAllItems() {
-    return api.get('/data/theaters?sortBy=_createdOn%20desc');
+    return api.get('/data/theaters?sortBy=_createdOn%20desc&distinct=title');
 }
 
 export async function getItemById(id) {
