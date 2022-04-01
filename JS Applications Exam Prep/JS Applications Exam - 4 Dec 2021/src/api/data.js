@@ -41,7 +41,7 @@ export async function getMyLikeByItemId(bookId, userId) {
 }
 
 export async function search(query) {
-    return api.get(`/data/cars?where=year%3D${query}`);
+    return api.get(`/data/albums?where=name%20LIKE%20%22${query}%22`);
 }
 
 export async function getComments(gameId) {

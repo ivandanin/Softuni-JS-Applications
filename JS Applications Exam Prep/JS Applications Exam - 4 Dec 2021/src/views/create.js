@@ -1,8 +1,9 @@
+import { createItem } from "../api/data.js";
 import { html } from "../lib.js";
 
-const createTemplate = () => html`
+const createTemplate = (onSubmit) => html`
 <section class="createPage">
-    <form>
+    <form @submit=${onSubmit}>
         <fieldset>
             <legend>Add Album</legend>
             <div class="container">
@@ -25,3 +26,38 @@ const createTemplate = () => html`
         </fieldset>
     </form>
 </section>`;
+
+export async function createPage(context) {
+    context.render(createTemplate(onSubmit));
+
+    async function onSubmit(event) {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+
+        const name = formData.get('name');
+        const imgUrl = formData.get('imgUrl');
+        const price = formData.get('price');
+        const releaseDate = formData.get('releaseDate');
+        const artist = formData.get('artist');
+        const genre = formData.get('genre');
+        const description = formData.get('description');
+
+        if (name == '' || imgUrl == '' ||
+             price == '' || releaseDate == '' ||
+              artist == '' || genre == '' || description == '') {
+                return alert('fill all fields');
+        }
+        if (price < 0) {
+            return alert('price must be positive number');
+        }
+
+        await createItem({name, imgUrl,
+            price, releaseDate,
+            artist, genre, description
+            }
+        );
+
+        context.page.redirect('/');
+    }
+}
