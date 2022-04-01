@@ -47,11 +47,15 @@ export async function editPage(context) {
         const description = formData.get('description');
         const imageUrl = formData.get('imageUrl');
 
-        if (title == '' || date == '' || author == '' || description == '' || imageUrl == '') {
-        return alert('All fields are required!');
-        }
+        try {
+            if (title == '' || date == '' || author == '' || description == '' || imageUrl == '') {
+            return alert('All fields are required!');
+            }
 
-        await editItem(context.params.id, {title, date, author, description, imageUrl});
-        context.page.redirect('/details/' + context.params.id);
+            await editItem(context.params.id, {title, date, author, description, imageUrl});
+            context.page.redirect('/details/' + context.params.id);
+        } catch(error) {
+            alert(error.message);
+        }
     }
 }

@@ -1,11 +1,12 @@
 import { deleteById, getItemById, getLikesByItemId, getMyLikeByItemId, LikeItem } from "../api/data.js";
 import { html } from "../lib.js";
 import { getUserData } from "../util.js";
+
 const detailsTemplate = (data, isOwner, likes, onDelete, showLikeBtn, onLike) => html`
 <section id="detailsPage">
 <div id="detailsBox">
     <div class="detailsInfo">
-        <h1>Title: Moulin Rouge! - The Musical</h1>
+        <h1>Title: ${data.title}</h1>
         <div>
             <img src="${data.imageUrl}" />
         </div>

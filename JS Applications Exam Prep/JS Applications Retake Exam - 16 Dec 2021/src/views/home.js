@@ -21,7 +21,7 @@ const homeTemplate = (data) => html`
 
             ${data.length == 0
                 ? html`<h4 class="no-event">No Events Yet...</h4>`
-                : html`${data.map(eventInfo)}`
+                : data.map(eventInfo)
             }
 
         </div>

@@ -37,11 +37,11 @@ export async function createPage(context) {
 
         const formData = new FormData(event.target);
 
-        const title = formData.get('title');
-        const date = formData.get('date');
-        const author = formData.get('author');
-        const description = formData.get('description');
-        const imageUrl = formData.get('imageUrl');
+        const title = formData.get('title').trim();
+        const date = formData.get('date').trim();
+        const author = formData.get('author').trim();
+        const description = formData.get('description').trim();
+        const imageUrl = formData.get('imageUrl').trim();
 
         if (title == '' ||
          date == '' ||
